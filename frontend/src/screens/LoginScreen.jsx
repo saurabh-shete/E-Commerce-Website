@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/shared/Message';
 import Loader from '../components/shared/Loader';
 import {login} from '../actions/userActions'
-import FromContainer from '../components/shared/FromContainer';
+import FormContainer from '../components/shared/FormContainer';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -28,7 +28,7 @@ const LoginScreen = () => {
 
   return (
     <>
-      <FromContainer>
+      <FormContainer>
         <h1>SIGN IN</h1>
         {error && <Message variant="danger">{error}</Message>}
         {loading && <Loader/>}
@@ -51,7 +51,7 @@ const LoginScreen = () => {
             <Link to={'/register'}>Register</Link>
           </Col>
         </Row>
-      </FromContainer>
+      </FormContainer>
     </>
   )
 }

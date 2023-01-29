@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavDropdown } from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -7,10 +7,26 @@ import { logout } from '../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 const Header = () => {
   const { userInfo } = useSelector((state) => state.userLogin);
+  // const { userUpdateProfile } = useSelector((state) => state.userUpdateProfile);
+  // const [userI, setUserI] = useState(userInfo?userInfo.name:'');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // useEffect(() => {
+  //   console.log('abs')
+  //   if (!userUpdateProfile && !userInfo) {
+  //     setUserI('');
+  //   } else if (!userUpdateProfile) {
+  //     setUserI(userInfo.name);
+  //   } else if (!userUpdateProfile.userInfo) {
+  //     setUserI(userInfo.name);
+  //   } else {
+  //     setUserI(userUpdateProfile.userInfo.name);
+  //   }
+  // },[setUserI, userInfo,userUpdateProfile])
 
   const logoutHandler = () => {
     dispatch(logout());

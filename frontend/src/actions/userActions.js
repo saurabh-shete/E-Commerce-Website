@@ -10,9 +10,7 @@ export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
     const config = { headers: { 'Content-Type': 'application/json' } };
-    console.log(1);
     const { data } = await axios.post('http://localhost:8080/api/users/login', { email, password }, config);
-    console.log(2)
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
@@ -87,6 +85,6 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       type: USER_UPDATE_PROFILE_FAIL,
       error: (error.response && error.response.data.message) ? error.response.data.message : error.message
     })
-    
+
   }
 }

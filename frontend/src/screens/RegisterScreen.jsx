@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/shared/Message';
 import Loader from '../components/shared/Loader';
 import { register } from '../actions/userActions'
-import FromContainer from '../components/shared/FromContainer';
+import FormContainer from '../components/shared/FormContainer';
 
 const RegisterScreen = () => {
   const [name, setName] = useState('');
@@ -36,7 +36,7 @@ const RegisterScreen = () => {
 
   return (
     <>
-      <FromContainer>
+      <FormContainer>
         <h1>Register</h1>
         {error && <Message variant="danger">{error}</Message>}
         {loading && <Loader />}
@@ -68,7 +68,7 @@ const RegisterScreen = () => {
             <Link to={'/login'}>Login</Link>
           </Col>
         </Row>
-      </FromContainer>
+      </FormContainer>
     </>
   )
 }
