@@ -4,7 +4,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/shared/Message';
 import Loader from '../components/shared/Loader';
-import { getUserDetails } from '../actions/userActions';
+import { getUserDetails, updateUserProfile } from '../actions/userActions';
 
 const ProfileScreen = () => {
   const [name, setName] = useState('');
@@ -16,9 +16,8 @@ const ProfileScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, error, user } = useSelector((state) => state.userDetails);
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-  console.log(userInfo)
+  const { userInfo } = useSelector((state) => state.userLogin);
+  const { success } = useSelector((state) => state.userUpdateProfile);
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
@@ -34,6 +33,7 @@ const ProfileScreen = () => {
   }, [navigate, userInfo, user, dispatch]);
 
   const submitHandler = (e) => {
+    dispatch(updateUserProfile({id:user._id,name,email,password}))
     e.preventDefault();
   };
 
@@ -43,6 +43,7 @@ const ProfileScreen = () => {
         <Col md={4}>
           <h1>Update Information</h1>
           {error && <Message variant="danger">{error}</Message>}
+          {success && <Message variant="success">Profile Updated</Message>}
           {loading && <Loader />}
           {message && <Message variant="danger">{message}</Message>}
           <Form onSubmit={submitHandler}>
@@ -63,7 +64,7 @@ const ProfileScreen = () => {
               <Form.Control type='password' placeholder='Enter Confirm Password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></Form.Control>
             </Form.Group>
             <br />
-            <Button type='submit' varient='primary'>SIGN IN</Button>
+            <Button type='submit' varient='primary'>Update</Button>
           </Form>
           <br />
         </Col>
