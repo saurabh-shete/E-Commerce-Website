@@ -30,6 +30,8 @@ const Header = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
+    localStorage.removeItem('shippingAddress');
+    localStorage.removeItem('cartItems');
     navigate('/');
   };
   

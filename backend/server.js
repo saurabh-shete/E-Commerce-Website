@@ -7,6 +7,8 @@ const cors = require("cors");
 const productRoutes = require('./routes/productsRoute');
 const { errorHandler } = require('./middlewares/errorMiddleware');
 const userRoutes = require('./routes/userRoute');
+const orderRoutes = require('./routes/orderRoute');
+
 //dotenv config
 dotenv.config();
 //Database Connection
@@ -24,6 +26,10 @@ app.get("/",(req,res)=>{
 
 app.use('/api',productRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
+app.get('/api/config/paypal', (req,res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID);
+})
 
 app.use(errorHandler);
 // app.get("/products",(req,res)=>{

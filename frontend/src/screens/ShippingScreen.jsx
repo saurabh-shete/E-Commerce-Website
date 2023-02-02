@@ -3,7 +3,8 @@ import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import FormContainer from '../components/shared/FormContainer';
-import {saveShippingAddress} from '../actions/cartActions';
+import { saveShippingAddress } from '../actions/cartActions';
+import CheckoutStep from "../components/shared/CheckoutStep";
 
 const ShippingAddress = () => {
   const {shippingAddress} = useSelector((state) => state.cart);
@@ -17,11 +18,13 @@ const ShippingAddress = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     //dispatch
-    dispatch(saveShippingAddress(address, city, postalCode, country));
+    dispatch(saveShippingAddress({ address, city, postalCode, country }));
     navigate('/payment');
   }
 
   return (
+    <>
+    <CheckoutStep step1 step2 />
     <FormContainer>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='address'>
@@ -59,6 +62,7 @@ const ShippingAddress = () => {
         <Button type='submit' variant='primary'>continue</Button>
       </Form>
     </FormContainer>
+    </>
   )
 }
 

@@ -1,34 +1,34 @@
 const mongoose = require('mongoose');
 
 const orderSchema = mongoose.Schema({
-  User : {
+  user : {
     type:mongoose.Schema.Types.ObjectId,
-    required: true,
+    //required: true,
     ref: 'User'
   },
   orderItems:[
     {
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        //required: true,
+        //ref: 'Product'
+      },  
       name:{
         type:String,
         required:true
+      },
+      image: {
+        type: String,
+        required: true
+      },
+      price: {
+        type: Number,
+        required: true
       },
       qty:{
         type:Number,
         required:true
       },
-      image:{
-        type:String,
-        required:true
-      },
-      price:{
-        type:Number,
-        required:true
-      },
-      Product : {
-      type:mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'Product'
-      }
     }
   ],
   shippingAddress:{
@@ -49,9 +49,15 @@ const orderSchema = mongoose.Schema({
       required:true
     }
   },
+  paymentMethod: {
+    type:String,
+  },
   payment:{
     type:Number,
-    required:true
+    //required:true
+  },
+  itemsPrice: {
+    type:Number
   },
   paymentResult:{
     id:{type:String},
@@ -85,7 +91,7 @@ const orderSchema = mongoose.Schema({
     required:true,
     default:false
   },
-  dilivredAt:{
+  diliveredAt:{
     type:Date
   }
 },{timestamps:true});
