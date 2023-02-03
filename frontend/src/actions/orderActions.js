@@ -14,7 +14,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       }
     }
 
-    const { data } = await axios.post('http://localhost:8080/api/orders', order, config);
+    const { data } = await axios.post(`${process.env.REACT_APP_PROXY_URL}api/orders`, order, config);
     dispatch({
       type: ORDER_CREATE_SUCCESS,
       payload: data
@@ -39,7 +39,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`
       }
     }
-    const { data } = await axios.get(`http://localhost:8080/api/orders/${id}`, config);
+    const { data } = await axios.get(`${process.env.REACT_APP_PROXY_URL}api/orders/${id}`, config);
     dispatch({
       type: ORDER_DETAILS_SUCCESS,
       payload: data
@@ -64,7 +64,7 @@ export const payOrder = (orderId,paymentResult) => async (dispatch, getState) =>
         Authorization: `Bearer ${userInfo.token}`
       }
     }
-    const { data } = await axios.put(`http://localhost:8080/api/orders/${orderId}/pay`,paymentResult, config);
+    const { data } = await axios.put(`${process.env.REACT_APP_PROXY_URL}api/orders/${orderId}/pay`,paymentResult, config);
     dispatch({
       type: ORDER_PAY_SUCCESS,
       payload: data
@@ -89,7 +89,7 @@ export const myListOrders = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`
       }
     }
-    const { data } = await axios.get("http://localhost:8080/api/orders/myorders", config);
+    const { data } = await axios.get(`${process.env.REACT_APP_PROXY_URL}api/orders/myorders`, config);
     dispatch({
       type: ORDER_MYLIST_SUCCESS,
       payload: data

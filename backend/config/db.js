@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 require('colours');
 
-
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI);

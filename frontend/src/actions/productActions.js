@@ -3,7 +3,7 @@ import { PRODUCT_LIST_SUCCESS,PRODUCT_LIST_REQUEST,PRODUCT_LIST_FAILS, PRODUCT_D
 export const listProducts = () => async(dispatch) =>{
   try {
     dispatch({type:PRODUCT_LIST_REQUEST});
-    const {data} = await axios.get('http://localhost:8080/api/products');
+    const { data } = await axios.get(`${process.env.REACT_APP_PROXY_URL}api/products`);
     dispatch({
       type:PRODUCT_LIST_SUCCESS,
       payload:data
@@ -19,7 +19,7 @@ export const listProducts = () => async(dispatch) =>{
 export const listProductsDetails = (id) => async(dispatch) =>{
   try {
     dispatch({type:PRODUCT_DETAILS_REQUEST});
-    const {data} = await axios.get(`http://localhost:8080/api/products/${id}`);
+    const { data } = await axios.get(`${process.env.REACT_APP_PROXY_URL}api/products/${id}`);
     dispatch({
       type:PRODUCT_DETAILS_SUCCESS,
       payload:data

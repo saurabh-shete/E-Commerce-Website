@@ -44,7 +44,7 @@ const ProfileScreen = () => {
 
   return (
     <>
-        <Row>
+      <Row>
         <Col md={4}>
           <h1>Update Information</h1>
           {error && <Message variant="danger">{error}</Message>}
@@ -114,7 +114,7 @@ const ProfileScreen = () => {
                 </tbody>
             </Table>)):(<></>)}
         </Col>
-        </Row>
+      </Row>
     </>
   )
 }
