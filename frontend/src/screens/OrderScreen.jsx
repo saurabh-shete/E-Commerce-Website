@@ -31,8 +31,8 @@ const OrderScreen = () => {
   }
   useEffect(() => {
     const addPaypalScript = async () => {
-      const { data: clientId } = await axios.get("http://localhost:8080/api/config/paypal");
-      const script = document.createElement('script');
+      const { data: clientId } = await axios.get(`${process.env.REACT_APP_PROXY_URL}api/config/paypal`);
+      const script = document.createElement('script'); 
       script.type = 'text/javascript';
       script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
       script.async = true;

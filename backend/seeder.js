@@ -10,6 +10,7 @@ require('colours');
 
 
 dotenv.config()
+
 connectDB();
 
 const importData = async () =>{
