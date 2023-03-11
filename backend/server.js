@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/",(req,res)=>{
-  res.send('<h1>welcum</h1>');
+  res.send('<h1>welcome</h1>');
 });
 
 app.use('/api',productRoutes);
